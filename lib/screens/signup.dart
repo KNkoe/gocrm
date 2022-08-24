@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gocrm/theme.dart';
+import 'package:gocrm/resources/theme.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);

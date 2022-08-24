@@ -6,8 +6,8 @@ import 'package:gocrm/screens/home/components/content.dart';
 import 'package:gocrm/screens/home/components/features.dart';
 import 'package:gocrm/screens/home/components/footer.dart';
 import 'package:gocrm/screens/home/components/images.dart';
-import 'package:gocrm/screens/responsive.dart';
-import 'package:gocrm/theme.dart';
+import 'package:gocrm/resources/responsive.dart';
+import 'package:gocrm/resources/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -95,9 +95,10 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   'GOCRM',
                                   style: TextStyle(
-                                    color: Colors.blueGrey[100],
+                                    color: Colors.white,
                                     fontSize: 20,
-                                    fontFamily: GoogleFonts.dmSans().fontFamily,
+                                    fontFamily:
+                                        GoogleFonts.montserrat().fontFamily,
                                     fontWeight: FontWeight.w400,
                                     letterSpacing: 3,
                                   ),
@@ -328,7 +329,9 @@ class _HomePageState extends State<HomePage> {
                                       MaterialStateProperty.all(porlandOrange),
                                   padding: MaterialStateProperty.all(
                                       const EdgeInsets.all(20))),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.popAndPushNamed(context, '/signup');
+                              },
                               child: const Text("Start for free"))
                         ],
                       ),

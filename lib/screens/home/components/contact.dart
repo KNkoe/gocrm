@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/screens/responsive.dart';
-import 'package:gocrm/theme.dart';
+import 'package:gocrm/resources/responsive.dart';
+import 'package:gocrm/resources/theme.dart';
 
 class Contact extends StatelessWidget {
   const Contact({

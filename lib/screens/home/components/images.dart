@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/screens/responsive.dart';
+import 'package:gocrm/resources/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CoverImage extends StatelessWidget {
