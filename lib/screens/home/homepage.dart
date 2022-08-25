@@ -332,7 +332,7 @@ class _HomePageState extends State<HomePage> {
                               onPressed: () {
                                 Navigator.popAndPushNamed(context, '/signup');
                               },
-                              child: const Text("Start for free"))
+                              child: const Text("Download"))
                         ],
                       ),
                       const SizedBox()
