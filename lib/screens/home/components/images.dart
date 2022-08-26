@@ -5,13 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 class CoverImage extends StatelessWidget {
   const CoverImage({
     Key? key,
-    required this.screenSize,
+    required this.width,
   }) : super(key: key);
 
-  final Size screenSize;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -23,7 +24,7 @@ class CoverImage extends StatelessWidget {
           children: [
             Image(
               height: screenSize.height * 0.7,
-              width: screenSize.width * 0.5,
+              width: width,
               image: const AssetImage("images/cover.png"),
             )
           ],
