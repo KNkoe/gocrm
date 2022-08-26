@@ -16,9 +16,10 @@ class CoverImage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: screenSize.height * 0.2,
-        ),
+        if (!ResponsiveWidget.isSmallScreen(context))
+          SizedBox(
+            height: screenSize.height * 0.2,
+          ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
