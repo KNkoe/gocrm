@@ -303,7 +303,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   BackgroundImage(screenSize: screenSize),
                   if (ResponsiveWidget.isSmallScreen(context))
-                    CoverImage(width: screenSize.width * 0.5),
+                    CoverImage(width: screenSize.width),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
