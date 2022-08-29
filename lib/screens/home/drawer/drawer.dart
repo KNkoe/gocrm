@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gocrm/resources/theme.dart';
-import 'package:gocrm/screens/dashboard/drawer/drawer_tile.dart';
+import 'package:gocrm/screens/home/drawer/drawer_tile.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
@@ -89,8 +89,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               },
               child: DrawerTile(
                 isCollapsed: widget._isCollapsed,
-                title: "Schedule",
-                icon: Icons.schedule,
+                title: "Calender",
+                icon: Icons.edit_calendar_outlined,
                 isSelected: _isSelected[1],
               ),
             ),
@@ -105,19 +105,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 title: "Clients",
                 icon: Icons.contact_page,
                 isSelected: _isSelected[2],
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  select(3);
-                });
-              },
-              child: DrawerTile(
-                isCollapsed: widget._isCollapsed,
-                title: "Appointments",
-                icon: Icons.edit_calendar,
-                isSelected: _isSelected[3],
               ),
             ),
             InkWell(

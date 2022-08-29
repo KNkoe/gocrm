@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/screens/dashboard.dart';
-import 'package:gocrm/screens/home/homepage.dart';
+import 'package:gocrm/screens/home/home.dart';
+import 'package:gocrm/screens/landing/landing.dart';
 import 'package:gocrm/screens/login.dart';
 import 'package:gocrm/screens/signup.dart';
 import 'package:gocrm/resources/theme.dart';
@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
       theme: lightThemeData,
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => const LandingPage(),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const Signup(),
-        '/dashboard': (context) => const DashBoard()
+        '/dashboard': (context) => const Home()
       },
     );
   }

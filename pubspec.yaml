@@ -37,7 +37,7 @@ dependencies:
   google_fonts: ^3.0.1
   font_awesome_flutter: ^10.1.0
   provider: ^6.0.3
-  charts_flutter: ^0.12.0
+  syncfusion_flutter_calendar: ^20.2.45
 
 dev_dependencies:
   flutter_test:

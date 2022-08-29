@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gocrm/screens/home/components/contact.dart';
-import 'package:gocrm/screens/home/components/content.dart';
-import 'package:gocrm/screens/home/components/features.dart';
-import 'package:gocrm/screens/home/components/footer.dart';
-import 'package:gocrm/screens/home/components/images.dart';
+import 'package:gocrm/screens/landing/components/contact.dart';
+import 'package:gocrm/screens/landing/components/content.dart';
+import 'package:gocrm/screens/landing/components/features.dart';
+import 'package:gocrm/screens/landing/components/footer.dart';
+import 'package:gocrm/screens/landing/components/images.dart';
 import 'package:gocrm/resources/responsive.dart';
 import 'package:gocrm/resources/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class LandingPage extends StatefulWidget {
+  const LandingPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LandingPage> createState() => _LandingPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LandingPageState extends State<LandingPage> {
   late ScrollController _scrollController;
   double _scrollPosition = 0;
   double _opacity = 0;
