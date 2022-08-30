@@ -10,9 +10,8 @@ var lightThemeData = ThemeData(
   cardColor: teaGreen,
   fontFamily: GoogleFonts.roboto().fontFamily,
   primaryTextTheme: TextTheme(
-    button: TextStyle(
+    button: const TextStyle(
       color: Colors.blueGrey,
-      decorationColor: Colors.blueGrey[300],
     ),
     subtitle2: TextStyle(
       color: Colors.blueGrey[900],
@@ -21,6 +20,11 @@ var lightThemeData = ThemeData(
       color: Colors.black,
     ),
     headline1: TextStyle(color: Colors.blueGrey[800]),
+    headline2: TextStyle(color: Colors.blueGrey[800]),
+    headline3: TextStyle(color: Colors.blueGrey[800]),
+    headline4: TextStyle(color: Colors.blueGrey[800]),
+    headline5: TextStyle(color: Colors.blueGrey[800]),
+    headline6: TextStyle(color: Colors.blueGrey[800]),
   ),
   bottomAppBarColor: Colors.blueGrey[900],
   iconTheme: const IconThemeData(color: Colors.blueGrey),

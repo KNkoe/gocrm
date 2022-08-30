@@ -57,7 +57,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
       decoration: const BoxDecoration(
           color: cardetBlue,
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(6), bottomRight: Radius.circular(6))),
+              topRight: Radius.circular(6), bottomRight: Radius.circular(6)),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 3),
+              spreadRadius: -2,
+              blurRadius: 8,
+              color: Color.fromRGBO(0, 0, 0, 0.4),
+            )
+          ]),
       height: widget.screenSize.height * 0.9,
       width: widget._isCollapsed ? widget.screenSize.width * 0.15 : 60,
       child: SingleChildScrollView(

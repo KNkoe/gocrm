@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/screens/home/appointment.dart';
+import 'package:gocrm/models/appointment.dart';
+import 'package:gocrm/screens/home/calendar/appointment.dart';
 import 'package:gocrm/screens/home/calendar/button.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -25,7 +26,7 @@ class _CalendarPageState extends State<CalendarPage> {
     return Column(
       children: [
         Container(
-            height: 90,
+            height: 100,
             width: double.infinity,
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(
@@ -49,7 +50,9 @@ class _CalendarPageState extends State<CalendarPage> {
                 ),
                 ElevatedButton(
                     style: buttonStyle,
-                    onPressed: () {},
+                    onPressed: () {
+                      showAP(context, screenSize, DateTime.now());
+                    },
                     child: const Text("New Appointment"))
               ],
             )),
@@ -69,10 +72,8 @@ class _CalendarPageState extends State<CalendarPage> {
               showDatePickerButton: true,
               showCurrentTimeIndicator: true,
               showNavigationArrow: true,
-              onTap: (CalendarTapDetails details) {
-                final Appointment appointment = Appointment(
-                    startTime: details.date!,
-                    endTime: details.date!.add(const Duration(hours: 2)));
+              onSelectionChanged: (details) {
+                showAP(context, screenSize, details.date!);
               },
             ))
       ],
