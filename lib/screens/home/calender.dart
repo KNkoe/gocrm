@@ -3,7 +3,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../models/appointment.dart';
 import 'calendar/appointment.dart';
-import 'calendar/decoration.dart';
+import '../../resources/decoration.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
@@ -56,7 +56,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   height: 10,
                 ),
                 ElevatedButton(
-                    style: buttonStyle,
+                    style: alertDialogButtonStyle,
                     onPressed: () {
                       showAP(context, screenSize, DateTime.now());
                     },
