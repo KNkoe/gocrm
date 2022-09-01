@@ -7,13 +7,11 @@ import 'dashboard/analytics_tile.dart';
 class Dashboard extends StatelessWidget {
   const Dashboard({
     Key? key,
-    required this.screenSize,
   }) : super(key: key);
-
-  final Size screenSize;
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
         Row(

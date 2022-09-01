@@ -72,7 +72,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
           children: [
             const SizedBox(
               height: 20,

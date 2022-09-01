@@ -4,22 +4,16 @@ import '../../../../resources/theme.dart';
 import '../decoration.dart';
 
 class AppointmentDetails extends StatefulWidget {
-  const AppointmentDetails(
-      {Key? key,
-      required this.selectedDate,
-      required this.startTime,
-      required this.endTime,
-      required this.selectDate,
-      required this.selectEndTime,
-      required this.selectStartTime})
-      : super(key: key);
+  const AppointmentDetails({
+    Key? key,
+    required this.selectedDate,
+    required this.startTime,
+    required this.endTime,
+  }) : super(key: key);
 
   final DateTime selectedDate;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
-  final Future selectStartTime;
-  final Future selectEndTime;
-  final Future selectDate;
 
   @override
   State<AppointmentDetails> createState() => _AppointmentDetailsState();
@@ -27,6 +21,55 @@ class AppointmentDetails extends StatefulWidget {
 
 class _AppointmentDetailsState extends State<AppointmentDetails> {
   final List<bool> _hovered = [false, false, false];
+
+  late DateTime selectedDate;
+  late TimeOfDay startTime;
+  late TimeOfDay endTime;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = widget.selectedDate;
+    startTime = widget.startTime;
+    endTime = widget.endTime;
+  }
+
+  _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2070),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  _selectStartTime(BuildContext context) async {
+    final TimeOfDay? picked =
+        await showTimePicker(context: context, initialTime: startTime);
+
+    if (picked != null && picked != startTime) {
+      setState(() {
+        startTime = picked;
+      });
+    }
+  }
+
+  _selectEndTime(BuildContext context) async {
+    final TimeOfDay? picked =
+        await showTimePicker(context: context, initialTime: endTime);
+
+    if (picked != null && picked != endTime) {
+      setState(() {
+        endTime = picked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +96,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
             children: [
               InkWell(
                 onTap: () {
-                  widget.selectDate;
+                  _selectDate(context);
                 },
                 onHover: (value) {
                   setState(() {
@@ -94,7 +137,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(widget.selectedDate.toString().split(" ")[0])
+                            Text(selectedDate.toString().split(" ")[0])
                           ],
                         ),
                         const SizedBox(
@@ -116,7 +159,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                   children: [
                     InkWell(
                       onTap: () {
-                        widget.selectStartTime;
+                        _selectStartTime(context);
                       },
                       onHover: (value) {
                         setState(() {
@@ -150,7 +193,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text(widget.startTime.format(context))
+                                Text(startTime.format(context))
                               ],
                             ),
                             const SizedBox(
@@ -162,7 +205,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                     ),
                     InkWell(
                       onTap: () {
-                        widget.selectEndTime;
+                        _selectEndTime(context);
                       },
                       onHover: (value) {
                         setState(() {
@@ -189,7 +232,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text(widget.endTime.format(context))
+                                Text(endTime.format(context))
                               ],
                             ),
                             const SizedBox(

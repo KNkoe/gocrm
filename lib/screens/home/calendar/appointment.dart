@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -33,50 +35,13 @@ class AP extends StatefulWidget {
 class _APState extends State<AP> {
   final PageController pageController = PageController();
 
+  bool recurring = false;
+
+  final TextEditingController appointmentLabel = TextEditingController();
+
   late DateTime selectedDate;
   late TimeOfDay startTime;
   late TimeOfDay endTime;
-
-  _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2022),
-      lastDate: DateTime(2070),
-    );
-
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
-
-  _selectStartTime(BuildContext context) async {
-    final TimeOfDay? picked =
-        await showTimePicker(context: context, initialTime: startTime);
-
-    if (picked != null && picked != startTime) {
-      setState(() {
-        startTime = picked;
-      });
-    }
-  }
-
-  bool recurring = false;
-
-  _selectEndTime(BuildContext context) async {
-    final TimeOfDay? picked =
-        await showTimePicker(context: context, initialTime: endTime);
-
-    if (picked != null && picked != endTime) {
-      setState(() {
-        endTime = picked;
-      });
-    }
-  }
-
-  final TextEditingController appointmentLabel = TextEditingController();
 
   @override
   void initState() {
@@ -94,109 +59,112 @@ class _APState extends State<AP> {
       controller: pageController,
       scrollDirection: Axis.horizontal,
       children: [
-        AlertDialog(
-          title: Column(
-            children: [
-              Text(
-                "Schedule New Appointment",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ],
-          ),
-          content: Container(
-            padding: const EdgeInsets.all(20),
-            width: screenSize.width * 0.8,
-            child: Column(
+        BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+          child: AlertDialog(
+            title: Column(
               children: [
-                SizedBox(
-                  height: 60,
-                  child: TextField(
-                      autofocus: true,
-                      decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.transparent)),
-                          border: const OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.transparent)),
-                          prefixIcon: const Icon(Icons.search),
-                          fillColor: teaGreen.withOpacity(0.5),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          filled: true,
-                          hintText: "Search by name or email")),
-                ),
-                InkWell(
-                  onTap: () {
-                    addClient(context);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.add,
-                          size: 34,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("New Client")
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
                 Text(
-                  "All Clients",
-                  style: TextStyle(color: Colors.grey.withOpacity(0.7)),
+                  "Schedule New Appointment",
+                  style: Theme.of(context).textTheme.headline6,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Divider(
-                  thickness: 1,
-                  color: Colors.grey.withOpacity(0.7),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  height: screenSize.height * 0.3,
-                  child: ListView(children: [
-                    InkWell(
-                      onTap: () {
-                        pageController.nextPage(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.ease);
-                      },
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.grey[500],
-                          ),
-                        ),
-                        title: const Text("Johnny"),
-                        subtitle: const Text("Johnnypmoser@gmail.com"),
-                      ),
-                    )
-                  ]),
-                )
               ],
             ),
+            content: Container(
+              padding: const EdgeInsets.all(20),
+              width: screenSize.width * 0.8,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 60,
+                    child: TextField(
+                        autofocus: true,
+                        decoration: InputDecoration(
+                            enabledBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent)),
+                            border: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent)),
+                            prefixIcon: const Icon(Icons.search),
+                            fillColor: teaGreen.withOpacity(0.5),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            filled: true,
+                            hintText: "Search by name or email")),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      addClient(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.add,
+                            size: 34,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text("New Client")
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "All Clients",
+                    style: TextStyle(color: Colors.grey.withOpacity(0.7)),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.grey.withOpacity(0.7),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: screenSize.height * 0.3,
+                    child: ListView(children: [
+                      InkWell(
+                        onTap: () {
+                          pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.ease);
+                        },
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.grey[500],
+                            ),
+                          ),
+                          title: const Text("Johnny"),
+                          subtitle: const Text("Johnnypmoser@gmail.com"),
+                        ),
+                      )
+                    ]),
+                  )
+                ],
+              ),
+            ),
+            actionsPadding: const EdgeInsets.only(bottom: 20),
+            actionsAlignment: MainAxisAlignment.center,
+            actions: [
+              ElevatedButton(
+                  style: buttonStyle1,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Cancel"))
+            ],
           ),
-          actionsPadding: const EdgeInsets.only(bottom: 20),
-          actionsAlignment: MainAxisAlignment.center,
-          actions: [
-            ElevatedButton(
-                style: buttonStyle1,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("Cancel"))
-          ],
         ),
         AlertDialog(
           title: Column(
@@ -228,9 +196,6 @@ class _APState extends State<AP> {
                           startTime: startTime,
                           endTime: endTime,
                           selectedDate: selectedDate,
-                          selectDate: _selectDate(context),
-                          selectStartTime: _selectStartTime(context),
-                          selectEndTime: _selectEndTime(context),
                         ),
                         const SizedBox(
                           height: 20,
@@ -254,8 +219,8 @@ class _APState extends State<AP> {
                           height: 20,
                         ),
                         LocationAndPrice(
-                            screenSize: screenSize,
-                            inputDecoration1: inputDecoration1)
+                          screenSize: screenSize,
+                        )
                       ]),
                   ClientInfo(screenSize: screenSize)
                 ],
@@ -288,7 +253,6 @@ class _APState extends State<AP> {
 
                   addAppoinment(appointment);
                   Navigator.of(context).pop();
-                  setState(() {});
                 },
                 child: const Text("Schedule Appointment"))
           ],
