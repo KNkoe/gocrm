@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gocrm/resources/theme.dart';
 
-ButtonStyle buttonStyle = ButtonStyle(
-    foregroundColor: MaterialStateProperty.all(Colors.black54),
+ButtonStyle alertDialogButtonStyle = ButtonStyle(
+    foregroundColor: MaterialStateProperty.all(Colors.black),
     padding: MaterialStateProperty.all(const EdgeInsets.all(18)),
     backgroundColor: MaterialStateProperty.all(teaGreen),
     elevation: MaterialStateProperty.all(0));

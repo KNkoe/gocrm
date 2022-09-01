@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../resources/decoration.dart';
 import '../../../../resources/theme.dart';
-import '../decoration.dart';
 
 class AppointmentDetails extends StatefulWidget {
   const AppointmentDetails({

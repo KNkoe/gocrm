@@ -9,7 +9,7 @@ import '../add_client.dart';
 import 'components/appointment_details.dart';
 import 'components/client_info.dart';
 import 'components/location_price.dart';
-import 'decoration.dart';
+import '../../../resources/decoration.dart';
 
 void showAP(BuildContext context, Size screenSize, DateTime startTime) {
   showDialog(
