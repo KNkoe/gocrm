@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gocrm/resources/theme.dart';
 import 'package:gocrm/screens/home/calender.dart';
-import 'package:gocrm/screens/home/drawer/drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../resources/theme.dart';
+import 'drawer/drawer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

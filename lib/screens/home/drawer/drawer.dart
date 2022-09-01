@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/resources/theme.dart';
-import 'package:gocrm/screens/home/drawer/drawer_tile.dart';
+
+import '../../../resources/theme.dart';
+import 'drawer_tile.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({

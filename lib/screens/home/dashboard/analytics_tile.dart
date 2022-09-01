@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/resources/theme.dart';
+
+import '../../../resources/theme.dart';
 
 class AnalyticsTile extends StatelessWidget {
   const AnalyticsTile({Key? key, required this.screenSize, required title})

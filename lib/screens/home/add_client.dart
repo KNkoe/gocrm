@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gocrm/resources/theme.dart';
-import 'package:gocrm/screens/home/calendar/button.dart';
+
+import '../../resources/theme.dart';
+import 'calendar/decoration.dart';
 
 void addClient(BuildContext context) {
   showDialog(

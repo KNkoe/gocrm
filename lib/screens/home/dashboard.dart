@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/resources/responsive.dart';
-import 'package:gocrm/resources/theme.dart';
-import 'package:gocrm/screens/home/dashboard/analytics_tile.dart';
+
+import '../../resources/responsive.dart';
+import '../../resources/theme.dart';
+import 'dashboard/analytics_tile.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({

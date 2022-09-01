@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/models/appointment.dart';
-import 'package:gocrm/screens/home/calendar/appointment.dart';
-import 'package:gocrm/screens/home/calendar/button.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+
+import '../../models/appointment.dart';
+import 'calendar/appointment.dart';
+import 'calendar/decoration.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
@@ -20,13 +21,19 @@ class _CalendarPageState extends State<CalendarPage> {
 
   final CalendarController calendarController = CalendarController();
 
+  final List<Appointment> meetings = <Appointment>[];
+
+  List<Appointment> getDataSource() {
+    return meetings;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
         Container(
-            height: 100,
+            height: 110,
             width: double.infinity,
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(

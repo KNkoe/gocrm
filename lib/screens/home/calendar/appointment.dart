@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/resources/theme.dart';
-import 'package:gocrm/screens/home/add_client.dart';
-import 'package:gocrm/screens/home/calendar/button.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+
+import '../../../models/appointment.dart';
+import '../../../resources/theme.dart';
+import '../add_client.dart';
+import 'components/appointment_details.dart';
+import 'components/client_info.dart';
+import 'components/location_price.dart';
+import 'decoration.dart';
 
 void showAP(BuildContext context, Size screenSize, DateTime startTime) {
   showDialog(
@@ -27,7 +33,59 @@ class AP extends StatefulWidget {
 class _APState extends State<AP> {
   final PageController pageController = PageController();
 
-  DateTime startDate = DateTime.now();
+  late DateTime selectedDate;
+  late TimeOfDay startTime;
+  late TimeOfDay endTime;
+
+  _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2070),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  _selectStartTime(BuildContext context) async {
+    final TimeOfDay? picked =
+        await showTimePicker(context: context, initialTime: startTime);
+
+    if (picked != null && picked != startTime) {
+      setState(() {
+        startTime = picked;
+      });
+    }
+  }
+
+  bool recurring = false;
+
+  _selectEndTime(BuildContext context) async {
+    final TimeOfDay? picked =
+        await showTimePicker(context: context, initialTime: endTime);
+
+    if (picked != null && picked != endTime) {
+      setState(() {
+        endTime = picked;
+      });
+    }
+  }
+
+  final TextEditingController appointmentLabel = TextEditingController();
+
+  @override
+  void initState() {
+    startTime = TimeOfDay.fromDateTime(widget._startTime);
+    endTime =
+        TimeOfDay.fromDateTime(widget._startTime.add(const Duration(hours: 2)));
+    selectedDate = widget._startTime;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +98,7 @@ class _APState extends State<AP> {
           title: Column(
             children: [
               Text(
-                "Create new Appointment",
+                "Schedule New Appointment",
                 style: Theme.of(context).textTheme.headline6,
               ),
             ],
@@ -144,82 +202,65 @@ class _APState extends State<AP> {
           title: Column(
             children: [
               Text(
-                "Create new Appointment",
+                "Schedule New Appointment",
                 style: Theme.of(context).textTheme.headline6,
               ),
             ],
           ),
-          content: Container(
-            padding: const EdgeInsets.all(20),
-            width: screenSize.width * 0.8,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text(
-                "Contact Information",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                height: 200,
-                width: screenSize.width * 0.4,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.06),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2022),
-                          lastDate: DateTime(2070),
-                        );
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            border: Border.all(color: Colors.grey[300]!)),
-                        child: Row(
+          content: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              width: screenSize.width * 0.8,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Appointment details",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        AppointmentDetails(
+                          startTime: startTime,
+                          endTime: endTime,
+                          selectedDate: selectedDate,
+                          selectDate: _selectDate(context),
+                          selectStartTime: _selectStartTime(context),
+                          selectEndTime: _selectEndTime(context),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
                           children: [
-                            Icon(
-                              Icons.edit_calendar,
-                              color: Colors.grey[300],
-                            ),
+                            Checkbox(
+                                value: recurring,
+                                onChanged: (value) {
+                                  setState(() {
+                                    recurring = !recurring;
+                                  });
+                                }),
                             const SizedBox(
-                              width: 20,
+                              width: 10,
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "Start date",
-                                  style: TextStyle(color: Colors.grey[300]),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(startDate.toString().split(" ")[0])
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
+                            const Text("Recurring")
                           ],
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ]),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        LocationAndPrice(
+                            screenSize: screenSize,
+                            inputDecoration1: inputDecoration1)
+                      ]),
+                  ClientInfo(screenSize: screenSize)
+                ],
+              ),
+            ),
           ),
           actionsPadding: const EdgeInsets.only(bottom: 20, left: 20),
           actions: [
@@ -230,7 +271,26 @@ class _APState extends State<AP> {
                 },
                 child: const Text("Cancel")),
             ElevatedButton(
-                onPressed: () {}, child: const Text("Schedule Appointment"))
+                style: ButtonStyle(
+                    padding:
+                        MaterialStateProperty.all(const EdgeInsets.all(20)),
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.blueGrey)),
+                onPressed: () {
+                  Appointment appointment = Appointment(
+                    subject: appointmentLabel.toString(),
+                    startTime: DateTime(selectedDate.year, selectedDate.month,
+                        selectedDate.day, startTime.hour, startTime.minute),
+                    endTime: DateTime(selectedDate.year, selectedDate.month,
+                        selectedDate.day, endTime.hour, endTime.minute),
+                    color: teaGreen,
+                  );
+
+                  addAppoinment(appointment);
+                  Navigator.of(context).pop();
+                  setState(() {});
+                },
+                child: const Text("Schedule Appointment"))
           ],
         )
       ],

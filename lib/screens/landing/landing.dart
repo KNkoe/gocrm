@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gocrm/screens/landing/components/contact.dart';
-import 'package:gocrm/screens/landing/components/content.dart';
-import 'package:gocrm/screens/landing/components/features.dart';
-import 'package:gocrm/screens/landing/components/footer.dart';
-import 'package:gocrm/screens/landing/components/images.dart';
-import 'package:gocrm/resources/responsive.dart';
-import 'package:gocrm/resources/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../resources/responsive.dart';
+import '../../resources/theme.dart';
+import 'components/contact.dart';
+import 'components/content.dart';
+import 'components/features.dart';
+import 'components/footer.dart';
+import 'components/images.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
