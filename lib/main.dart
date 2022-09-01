@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gocrm/screens/home/home.dart';
-import 'package:gocrm/screens/landing/landing.dart';
-import 'package:gocrm/screens/login.dart';
-import 'package:gocrm/screens/signup.dart';
-import 'package:gocrm/resources/theme.dart';
+
+import 'resources/theme.dart';
+import 'screens/home/home.dart';
+import 'screens/landing/landing.dart';
+import 'screens/login.dart';
+import 'screens/signup.dart';
 
 void main() {
   runApp(const MyApp());
