@@ -158,7 +158,7 @@ class _APState extends State<AP> {
             actionsAlignment: MainAxisAlignment.center,
             actions: [
               ElevatedButton(
-                  style: buttonStyle1,
+                  style: alertDialogButtonStyle,
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -230,7 +230,7 @@ class _APState extends State<AP> {
           actionsPadding: const EdgeInsets.only(bottom: 20, left: 20),
           actions: [
             ElevatedButton(
-                style: buttonStyle1,
+                style: alertDialogButtonStyle,
                 onPressed: () {
                   Navigator.pop(context);
                 },

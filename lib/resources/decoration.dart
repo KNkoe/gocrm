@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:gocrm/resources/theme.dart';
 
 ButtonStyle alertDialogButtonStyle = ButtonStyle(
-    foregroundColor: MaterialStateProperty.all(Colors.black),
-    padding: MaterialStateProperty.all(const EdgeInsets.all(18)),
-    backgroundColor: MaterialStateProperty.all(teaGreen),
-    elevation: MaterialStateProperty.all(0));
+  foregroundColor: MaterialStateProperty.all(Colors.black),
+  padding: MaterialStateProperty.all(const EdgeInsets.all(18)),
+  backgroundColor: MaterialStateProperty.all(teaGreen),
+);
 
 ButtonStyle buttonStyle1 = ButtonStyle(
-    foregroundColor: MaterialStateProperty.all(Colors.black87),
-    padding: MaterialStateProperty.all(const EdgeInsets.all(18)),
-    backgroundColor: MaterialStateProperty.all(teaGreen),
+    foregroundColor: MaterialStateProperty.all(Colors.white),
+    fixedSize: MaterialStateProperty.all(const Size.fromHeight(40)),
+    backgroundColor: MaterialStateProperty.all(oceanGreen),
     elevation: MaterialStateProperty.all(0));
 
 InputDecoration inputDecoration1 = InputDecoration(

@@ -204,12 +204,14 @@ class _AddClientState extends State<AddClient> {
         actionsPadding: const EdgeInsets.only(bottom: 20),
         actions: [
           ElevatedButton(
-              style: buttonStyle1, onPressed: () {}, child: const Text("Save")),
+              style: alertDialogButtonStyle,
+              onPressed: () {},
+              child: const Text("Save")),
           const SizedBox(
             width: 40,
           ),
           ElevatedButton(
-              style: buttonStyle1,
+              style: alertDialogButtonStyle,
               onPressed: () {
                 Navigator.of(context).pop();
               },

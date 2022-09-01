@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../resources/decoration.dart';
 import '../../resources/responsive.dart';
 import '../../resources/theme.dart';
+import 'add_client.dart';
+import 'calendar/appointment.dart';
 import 'dashboard/analytics_tile.dart';
 
 class Dashboard extends StatelessWidget {
@@ -14,22 +18,77 @@ class Dashboard extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(),
-            const Text(
-              "Dashboard",
-              style: TextStyle(fontSize: 26, color: Colors.black54),
-            ),
-            Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.black26)),
-              padding: const EdgeInsets.all(6),
-              child: Text(DateTime.now().toLocal().toString().split(" ")[0]),
-            ),
-          ],
-        ),
+        Container(
+            height: 110,
+            width: double.infinity,
+            decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 1),
+                spreadRadius: -2,
+                blurRadius: 5,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              )
+            ]),
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Dashboard", style: TextStyle(fontSize: 20, color: grey)),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton.icon(
+                        icon: const Icon(
+                          Icons.edit_calendar,
+                          color: Colors.white,
+                        ),
+                        style: buttonStyle1,
+                        onPressed: () {
+                          showAP(context, screenSize, DateTime.now());
+                        },
+                        label: const Text("New Appointment")),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton.icon(
+                        icon: const FaIcon(
+                          FontAwesomeIcons.person,
+                          color: Colors.white,
+                        ),
+                        style: buttonStyle1,
+                        onPressed: () {
+                          addClient(context);
+                        },
+                        label: const Text("New Client")),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton.icon(
+                        icon: const FaIcon(
+                          FontAwesomeIcons.fileInvoice,
+                          color: Colors.white,
+                        ),
+                        style: buttonStyle1,
+                        onPressed: () {},
+                        label: const Text("New Invoice")),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton.icon(
+                        icon: const Icon(
+                          Icons.payment,
+                          color: Colors.white,
+                        ),
+                        style: buttonStyle1,
+                        onPressed: () {},
+                        label: const Text("Record Payment")),
+                  ],
+                ),
+              ],
+            )),
         const SizedBox(
           height: 20,
         ),
@@ -85,26 +144,6 @@ class Dashboard extends StatelessWidget {
             ),
           ],
         ),
-        Flex(
-          direction: ResponsiveWidget.isSmallScreen(context)
-              ? Axis.vertical
-              : Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            AnalyticsTile(
-              screenSize: screenSize,
-              title: "Leads Over Time",
-            ),
-            AnalyticsTile(
-              screenSize: screenSize,
-              title: "Leads Started",
-            ),
-            AnalyticsTile(
-              screenSize: screenSize,
-              title: "Top Leads",
-            ),
-          ],
-        )
       ],
     );
   }

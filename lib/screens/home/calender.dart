@@ -56,7 +56,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   height: 10,
                 ),
                 ElevatedButton(
-                    style: alertDialogButtonStyle,
+                    style: buttonStyle1,
                     onPressed: () {
                       showAP(context, screenSize, DateTime.now());
                     },
