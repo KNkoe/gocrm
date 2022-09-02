@@ -19,10 +19,14 @@ class MyHomePageState extends State<MyHomePage> {
 
   final List<bool> _isCollapsed = [false];
 
+  _resetCollapsed() {
+    for (int i = 0; i < _isCollapsed.length; i++) {
+      _isCollapsed[i] = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-
     Widget selectedScreen(int index) {
       if (index == 0) {
         return const Dashboard();
@@ -39,31 +43,44 @@ class MyHomePageState extends State<MyHomePage> {
       children: [
         Drawer(
           backgroundColor: cardetBlue,
-          width: screenSize.width * 0.15,
+          width: 220,
           child: ListView(
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
 
             children: <Widget>[
               DrawerHeader(
-                child: Row(
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    const Image(
-                        height: 30,
-                        width: 30,
-                        image: AssetImage("assets/images/go.png")),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'GOCRM',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: GoogleFonts.montserrat().fontFamily,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 3,
+                    Transform.translate(
+                      offset: const Offset(-60, -30),
+                      child: Container(
+                        height: 200,
+                        decoration: const BoxDecoration(
+                            color: Colors.white12, shape: BoxShape.circle),
                       ),
+                    ),
+                    Row(
+                      children: [
+                        const Image(
+                            height: 30,
+                            width: 30,
+                            image: AssetImage("assets/images/go.png")),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'GOCRM',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: GoogleFonts.montserrat().fontFamily,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 3,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -80,7 +97,10 @@ class MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 selected: _selectedDestination == 0,
-                onTap: () => selectDestination(0),
+                onTap: () {
+                  _resetCollapsed();
+                  selectDestination(0);
+                },
               ),
               ListTile(
                 selectedTileColor: Colors.white24,
@@ -170,7 +190,10 @@ class MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 selected: _selectedDestination == 5,
-                onTap: () => selectDestination(5),
+                onTap: () {
+                  _resetCollapsed();
+                  selectDestination(5);
+                },
               ),
               ListTile(
                 selectedTileColor: Colors.white24,
@@ -184,7 +207,10 @@ class MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 selected: _selectedDestination == 6,
-                onTap: () => selectDestination(6),
+                onTap: () {
+                  _resetCollapsed();
+                  selectDestination(6);
+                },
               ),
               ListTile(
                 selectedTileColor: Colors.white24,
@@ -198,7 +224,10 @@ class MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 selected: _selectedDestination == 7,
-                onTap: () => selectDestination(7),
+                onTap: () {
+                  _resetCollapsed();
+                  selectDestination(7);
+                },
               ),
               const Divider(
                 thickness: 1,
@@ -222,7 +251,10 @@ class MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 selected: _selectedDestination == 8,
-                onTap: () => selectDestination(8),
+                onTap: () {
+                  _resetCollapsed();
+                  selectDestination(8);
+                },
               ),
               ListTile(
                 selectedTileColor: Colors.white24,
@@ -236,7 +268,10 @@ class MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 selected: _selectedDestination == 9,
-                onTap: () => selectDestination(9),
+                onTap: () {
+                  _resetCollapsed();
+                  selectDestination(9);
+                },
               ),
               const Divider(
                 thickness: 1,

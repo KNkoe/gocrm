@@ -54,12 +54,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(3),
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: Colors.white54),
-                      child: Icon(
+                      child: const Icon(
                         Icons.person,
-                        color: grey,
+                        color: Colors.white70,
+                        size: 20,
                       ),
                     ),
                     const SizedBox(
@@ -84,12 +85,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                           children: const [
                             CircleAvatar(
                               minRadius: 40,
+                              backgroundColor: Colors.white,
                               child: Icon(Icons.person),
                             ),
                             SizedBox(
                               height: 10,
                             ),
-                            Text("Johnnymoser"),
+                            Text("Johnny Moser"),
                             SizedBox(
                               height: 10,
                             ),
@@ -100,6 +102,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ],
                         ),
                       )),
+                  const PopupMenuDivider(),
                   const PopupMenuItem(
                     child: ListTile(
                       leading: Icon(Icons.person_outlined),
