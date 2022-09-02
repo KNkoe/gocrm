@@ -55,12 +55,21 @@ class _CalendarPageState extends State<CalendarPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                ElevatedButton(
-                    style: buttonStyle1,
-                    onPressed: () {
-                      showAP(context, screenSize, DateTime.now());
-                    },
-                    child: const Text("New Appointment"))
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                        style: buttonStyle1,
+                        onPressed: () {
+                          showAP(context, screenSize, DateTime.now());
+                        },
+                        child: const Text("New Appointment")),
+                    ElevatedButton(
+                        style: buttonStyle1,
+                        onPressed: () {},
+                        child: const Text("New Meeting")),
+                  ],
+                )
               ],
             )),
         Container(
