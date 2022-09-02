@@ -17,6 +17,8 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   int _selectedDestination = 0;
 
+  final List<bool> _isCollapsed = [false];
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -25,6 +27,8 @@ class MyHomePageState extends State<MyHomePage> {
       if (index == 0) {
         return const Dashboard();
       } else if (index == 1) {
+        return const CalendarPage();
+      } else if (index == 2) {
         return const CalendarPage();
       }
 
@@ -65,7 +69,7 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               ListTile(
-                selectedTileColor: Colors.black26,
+                selectedTileColor: Colors.white24,
                 leading: const FaIcon(
                   FontAwesomeIcons.boxArchive,
                   size: 24,
@@ -79,7 +83,7 @@ class MyHomePageState extends State<MyHomePage> {
                 onTap: () => selectDestination(0),
               ),
               ListTile(
-                selectedTileColor: Colors.black26,
+                selectedTileColor: Colors.white24,
                 leading: const FaIcon(
                   FontAwesomeIcons.calendar,
                   size: 24,
@@ -90,10 +94,72 @@ class MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 selected: _selectedDestination == 1,
-                onTap: () => selectDestination(1),
+                onTap: () {
+                  _isCollapsed[0] = !_isCollapsed[0];
+                  selectDestination(1);
+                },
               ),
+              if (_isCollapsed[0])
+                Column(
+                  children: [
+                    ListTile(
+                      selectedTileColor: Colors.white12,
+                      tileColor: Colors.white24,
+                      title: Row(
+                        children: const [
+                          SizedBox(
+                            width: 50,
+                          ),
+                          Text(
+                            'Calendar View',
+                            style:
+                                TextStyle(color: Colors.white70, fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      selected: _selectedDestination == 2,
+                      onTap: () => selectDestination(2),
+                    ),
+                    ListTile(
+                      selectedTileColor: Colors.white12,
+                      tileColor: Colors.white24,
+                      title: Row(
+                        children: const [
+                          SizedBox(
+                            width: 50,
+                          ),
+                          Text(
+                            'Appointments',
+                            style:
+                                TextStyle(color: Colors.white70, fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      selected: _selectedDestination == 3,
+                      onTap: () => selectDestination(3),
+                    ),
+                    ListTile(
+                      selectedTileColor: Colors.white12,
+                      tileColor: Colors.white24,
+                      title: Row(
+                        children: const [
+                          SizedBox(
+                            width: 50,
+                          ),
+                          Text(
+                            'Events',
+                            style:
+                                TextStyle(color: Colors.white70, fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      selected: _selectedDestination == 4,
+                      onTap: () => selectDestination(4),
+                    ),
+                  ],
+                ),
               ListTile(
-                selectedTileColor: Colors.black26,
+                selectedTileColor: Colors.white24,
                 leading: const FaIcon(
                   FontAwesomeIcons.person,
                   size: 24,
@@ -103,11 +169,11 @@ class MyHomePageState extends State<MyHomePage> {
                   'Clients',
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
-                selected: _selectedDestination == 2,
-                onTap: () => selectDestination(2),
+                selected: _selectedDestination == 5,
+                onTap: () => selectDestination(5),
               ),
               ListTile(
-                selectedTileColor: Colors.black26,
+                selectedTileColor: Colors.white24,
                 leading: const FaIcon(
                   FontAwesomeIcons.coins,
                   size: 24,
@@ -117,11 +183,11 @@ class MyHomePageState extends State<MyHomePage> {
                   'Payments',
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
-                selected: _selectedDestination == 3,
-                onTap: () => selectDestination(3),
+                selected: _selectedDestination == 6,
+                onTap: () => selectDestination(6),
               ),
               ListTile(
-                selectedTileColor: Colors.black26,
+                selectedTileColor: Colors.white24,
                 leading: const FaIcon(
                   FontAwesomeIcons.fileInvoice,
                   size: 24,
@@ -131,8 +197,8 @@ class MyHomePageState extends State<MyHomePage> {
                   'Documents',
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
-                selected: _selectedDestination == 4,
-                onTap: () => selectDestination(4),
+                selected: _selectedDestination == 7,
+                onTap: () => selectDestination(7),
               ),
               const Divider(
                 thickness: 1,
@@ -145,7 +211,7 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               ListTile(
-                selectedTileColor: Colors.black26,
+                selectedTileColor: Colors.white24,
                 leading: const FaIcon(
                   FontAwesomeIcons.weebly,
                   size: 24,
@@ -155,11 +221,11 @@ class MyHomePageState extends State<MyHomePage> {
                   'Website Builder',
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
-                selected: _selectedDestination == 5,
-                onTap: () => selectDestination(5),
+                selected: _selectedDestination == 8,
+                onTap: () => selectDestination(8),
               ),
               ListTile(
-                selectedTileColor: Colors.black26,
+                selectedTileColor: Colors.white24,
                 leading: const FaIcon(
                   Icons.forum,
                   size: 24,
@@ -169,8 +235,8 @@ class MyHomePageState extends State<MyHomePage> {
                   'Forum',
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
-                selected: _selectedDestination == 6,
-                onTap: () => selectDestination(6),
+                selected: _selectedDestination == 9,
+                onTap: () => selectDestination(9),
               ),
               const Divider(
                 thickness: 1,

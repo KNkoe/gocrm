@@ -9,6 +9,29 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
   }) : super(key: key);
 
+  _logout(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: ((context) => AlertDialog(
+              title: const Text("Are you sure you want to log out?"),
+              actions: [
+                ElevatedButton(
+                    style: alertDialogButtonStyle,
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.popAndPushNamed(context, '/login');
+                    },
+                    child: const Text("Confirm")),
+                ElevatedButton(
+                    style: alertDialogButtonStyle,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Cancel"))
+              ],
+            )));
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -25,30 +48,81 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              PopupMenuButton(
+                padding: EdgeInsets.zero,
+                color: Colors.white,
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.white54),
+                      child: Icon(
+                        Icons.person,
+                        color: grey,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text("Johnny Moser"),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+                itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                  PopupMenuItem(
+                      enabled: false,
+                      child: Container(
+                        height: 200,
+                        width: 500,
+                        decoration: const BoxDecoration(color: teaGreen),
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            CircleAvatar(
+                              minRadius: 40,
+                              child: Icon(Icons.person),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text("Johnnymoser"),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Johnnypmoser@gmail.com",
+                              style: TextStyle(fontSize: 12),
+                            )
+                          ],
+                        ),
+                      )),
+                  const PopupMenuItem(
+                    child: ListTile(
+                      leading: Icon(Icons.person_outlined),
+                      title: Text(
+                        'My Account',
+                      ),
+                    ),
+                  ),
+                  const PopupMenuDivider(),
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: const Icon(Icons.logout),
+                      title: const Text('Logout'),
+                      onTap: () {
+                        _logout(context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
               IconButton(
                   onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: ((context) => AlertDialog(
-                              title: const Text(
-                                  "Are you sure you want to log out?"),
-                              actions: [
-                                ElevatedButton(
-                                    style: alertDialogButtonStyle,
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.popAndPushNamed(
-                                          context, '/login');
-                                    },
-                                    child: const Text("Confirm")),
-                                ElevatedButton(
-                                    style: alertDialogButtonStyle,
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text("Cancel"))
-                              ],
-                            )));
+                    _logout(context);
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.powerOff,
