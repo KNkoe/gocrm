@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gocrm/resources/decoration.dart';
@@ -12,23 +14,26 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   _logout(BuildContext context) {
     showDialog(
         context: context,
-        builder: ((context) => AlertDialog(
-              title: const Text("Are you sure you want to log out?"),
-              actions: [
-                ElevatedButton(
-                    style: alertDialogButtonStyle,
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.popAndPushNamed(context, '/login');
-                    },
-                    child: const Text("Confirm")),
-                ElevatedButton(
-                    style: alertDialogButtonStyle,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Cancel"))
-              ],
+        builder: ((context) => BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: AlertDialog(
+                title: const Text("Are you sure you want to log out?"),
+                actions: [
+                  ElevatedButton(
+                      style: alertDialogButtonStyle,
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.popAndPushNamed(context, '/login');
+                      },
+                      child: const Text("Confirm")),
+                  ElevatedButton(
+                      style: alertDialogButtonStyle,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Cancel"))
+                ],
+              ),
             )));
   }
 
@@ -129,7 +134,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.powerOff,
-                    size: 20,
+                    size: 18,
                   )),
               const SizedBox(
                 width: 20,
@@ -142,5 +147,5 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(35);
 }

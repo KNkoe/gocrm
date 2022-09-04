@@ -38,6 +38,7 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   provider: ^6.0.3
   syncfusion_flutter_calendar: ^20.2.45
+  file_picker: ^5.0.1
 
 dev_dependencies:
   flutter_test:

@@ -200,22 +200,17 @@ class _AddClientState extends State<AddClient> {
             ),
           ),
         ),
-        actionsAlignment: MainAxisAlignment.center,
-        actionsPadding: const EdgeInsets.only(bottom: 20),
         actions: [
-          ElevatedButton(
-              style: alertDialogButtonStyle,
-              onPressed: () {},
-              child: const Text("Save")),
-          const SizedBox(
-            width: 40,
-          ),
           ElevatedButton(
               style: alertDialogButtonStyle,
               onPressed: () {
                 Navigator.of(context).pop();
               },
               child: const Text("Cancel")),
+          ElevatedButton(
+              style: alertDialogSeletedButtonStyle,
+              onPressed: () {},
+              child: const Text("Save")),
         ],
       ),
     );

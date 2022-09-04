@@ -26,6 +26,7 @@ class CoverImage extends StatelessWidget {
             Image(
               height: screenSize.height * 0.7,
               width: width,
+              fit: BoxFit.cover,
               image: const AssetImage("images/cover.png"),
             )
           ],

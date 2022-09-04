@@ -335,7 +335,7 @@ class _LandingPageState extends State<LandingPage> {
                               onPressed: () {
                                 Navigator.popAndPushNamed(context, '/signup');
                               },
-                              child: const Text("Sign up for free"))
+                              child: const Text("Start up for free"))
                         ],
                       ),
                       const SizedBox()

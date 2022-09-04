@@ -77,22 +77,19 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
     return Container(
       height: 200,
       width: screenSize.width * 0.4,
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.2),
           borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: TextField(
-              decoration: inputDecoration1.copyWith(
-                  label: const Text("Appointment Label")),
-            ),
+          TextField(
+            decoration: inputDecoration1.copyWith(
+                label: const Text("Appointment Label")),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
                 onTap: () {

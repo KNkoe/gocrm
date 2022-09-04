@@ -8,87 +8,106 @@ import 'add_client.dart';
 import 'calendar/appointment.dart';
 import 'dashboard/analytics_tile.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  double blurRadius = 5;
+  @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(
-            height: 110,
-            width: double.infinity,
-            decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                offset: Offset(0, 1),
-                spreadRadius: -2,
-                blurRadius: 5,
-                color: Color.fromRGBO(0, 0, 0, 0.2),
-              )
-            ]),
-            padding: const EdgeInsets.all(14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Dashboard", style: TextStyle(fontSize: 20, color: grey)),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton.icon(
-                        icon: const Icon(
-                          Icons.edit_calendar,
-                          color: Colors.white,
-                        ),
-                        style: buttonStyle1,
-                        onPressed: () {
-                          showAP(context, screenSize, DateTime.now());
-                        },
-                        label: const Text("New Appointment")),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    ElevatedButton.icon(
-                        icon: const FaIcon(
-                          FontAwesomeIcons.person,
-                          color: Colors.white,
-                        ),
-                        style: buttonStyle1,
-                        onPressed: () {
-                          addClient(context);
-                        },
-                        label: const Text("New Client")),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton.icon(
-                        icon: const FaIcon(
-                          FontAwesomeIcons.fileInvoice,
-                          color: Colors.white,
-                        ),
-                        style: buttonStyle1,
-                        onPressed: () {},
-                        label: const Text("New Invoice")),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton.icon(
-                        icon: const Icon(
-                          Icons.payment,
-                          color: Colors.white,
-                        ),
-                        style: buttonStyle1,
-                        onPressed: () {},
-                        label: const Text("Record Payment")),
-                  ],
-                ),
-              ],
-            )),
+        MouseRegion(
+          onEnter: (value) {
+            setState(() {
+              blurRadius = 13;
+            });
+          },
+          onExit: (value) {
+            setState(() {
+              blurRadius = 5;
+            });
+          },
+          child: Container(
+              height: 110,
+              width: double.infinity,
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 1),
+                  spreadRadius: -2,
+                  blurRadius: blurRadius,
+                  color: const Color.fromRGBO(0, 0, 0, 0.2),
+                )
+              ]),
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Dashboard",
+                      style: TextStyle(fontSize: 20, color: grey)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.edit_calendar,
+                            color: Colors.white,
+                          ),
+                          style: buttonStyle1,
+                          onPressed: () {
+                            showAP(context, screenSize, DateTime.now());
+                          },
+                          label: const Text("New Appointment")),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton.icon(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.person,
+                            color: Colors.white,
+                          ),
+                          style: buttonStyle1,
+                          onPressed: () {
+                            addClient(context);
+                          },
+                          label: const Text("New Client")),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ElevatedButton.icon(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.fileInvoice,
+                            color: Colors.white,
+                          ),
+                          style: buttonStyle1,
+                          onPressed: () {},
+                          label: const Text("New Invoice")),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.payment,
+                            color: Colors.white,
+                          ),
+                          style: buttonStyle1,
+                          onPressed: () {},
+                          label: const Text("Record Payment")),
+                    ],
+                  ),
+                ],
+              )),
+        ),
         const SizedBox(
           height: 20,
         ),

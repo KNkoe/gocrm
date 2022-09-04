@@ -31,6 +31,8 @@ var lightThemeData = ThemeData(
   brightness: Brightness.light,
 );
 
+const Color primaryColor = Colors.blueGrey;
+
 const Color denimBlue = Color(0xff023FB4);
 const Color lightGreen = Color(0xff80ED99);
 const Color oceanGreen = Color(0xff57CC99);

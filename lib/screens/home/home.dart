@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gocrm/screens/home/calender.dart';
 import 'package:gocrm/screens/home/components/appbar.dart';
 import 'package:gocrm/screens/home/dashboard.dart';
+import 'package:gocrm/screens/home/documents.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../resources/theme.dart';
@@ -34,6 +35,8 @@ class MyHomePageState extends State<MyHomePage> {
         return const CalendarPage();
       } else if (index == 2) {
         return const CalendarPage();
+      } else if (index == 7) {
+        return const DocumentsPage();
       }
 
       return Container();
@@ -122,24 +125,6 @@ class MyHomePageState extends State<MyHomePage> {
               if (_isCollapsed[0])
                 Column(
                   children: [
-                    ListTile(
-                      selectedTileColor: Colors.white12,
-                      tileColor: Colors.white24,
-                      title: Row(
-                        children: const [
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Text(
-                            'Calendar View',
-                            style:
-                                TextStyle(color: Colors.white70, fontSize: 14),
-                          ),
-                        ],
-                      ),
-                      selected: _selectedDestination == 2,
-                      onTap: () => selectDestination(2),
-                    ),
                     ListTile(
                       selectedTileColor: Colors.white12,
                       tileColor: Colors.white24,

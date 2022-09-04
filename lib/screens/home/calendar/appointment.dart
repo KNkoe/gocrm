@@ -8,7 +8,7 @@ import '../../../resources/theme.dart';
 import '../add_client.dart';
 import 'components/appointment_details.dart';
 import 'components/client_info.dart';
-import 'components/location_price.dart';
+import 'components/location.dart';
 import '../../../resources/decoration.dart';
 
 void showAP(BuildContext context, Size screenSize, DateTime startTime) {
@@ -56,6 +56,7 @@ class _APState extends State<AP> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return PageView(
+      allowImplicitScrolling: false,
       controller: pageController,
       scrollDirection: Axis.horizontal,
       children: [
@@ -154,7 +155,6 @@ class _APState extends State<AP> {
                 ],
               ),
             ),
-            actionsPadding: const EdgeInsets.only(bottom: 20),
             actionsAlignment: MainAxisAlignment.center,
             actions: [
               ElevatedButton(
@@ -181,6 +181,7 @@ class _APState extends State<AP> {
               width: screenSize.width * 0.8,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,11 +237,7 @@ class _APState extends State<AP> {
                 },
                 child: const Text("Cancel")),
             ElevatedButton(
-                style: ButtonStyle(
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(20)),
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.blueGrey)),
+                style: alertDialogSeletedButtonStyle,
                 onPressed: () {
                   Appointment appointment = Appointment(
                     subject: appointmentLabel.toString(),

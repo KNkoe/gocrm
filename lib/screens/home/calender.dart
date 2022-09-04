@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../models/appointment.dart';
+import '../../resources/theme.dart';
 import 'calendar/appointment.dart';
 import '../../resources/decoration.dart';
 
@@ -47,11 +48,7 @@ class _CalendarPageState extends State<CalendarPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Calendar",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    )),
+                Text("Calendar", style: TextStyle(fontSize: 20, color: grey)),
                 const SizedBox(
                   height: 10,
                 ),
